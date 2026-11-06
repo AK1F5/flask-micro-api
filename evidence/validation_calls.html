@@ -1,0 +1,71 @@
+<!doctype html><html lang='en'><meta charset='utf-8'><title>Flask Micro-API | Live HTTP evidence</title><style>body{max-width:1050px;margin:28px auto;padding:0 24px;font:16px system-ui;color:#17212b;background:#fff}h1{font-size:26px}h2{font-size:18px}section{border-top:1px solid #aaa;padding:8px 0}pre{font:15px/1.35 Consolas,monospace;white-space:pre-wrap}p{margin:8px 0}strong{color:#146433}</style><h1>MC - SDIR | Flask Micro-API</h1><p>Actual responses captured by <code>python demo_requests.py</code>.</p><p>Run: 2026-11-06T20:13:00.401264+00:00<br>Python 3.12.10 | Flask 3.1.3 | requests 2.34.2<br>Overall result: <strong>13 HTTP checks passed</strong></p><section><h2>POST http://127.0.0.1:5000/data</h2><p><strong>PASS | HTTP 400</strong> | application/json</p><pre>Request body: {&quot;name&quot;: &quot;Missing category&quot;}
+
+Response JSON:
+{
+  &quot;error&quot;: &quot;Bad Request&quot;,
+  &quot;message&quot;: &quot;&#x27;category&#x27; must be a non-empty string.&quot;
+}</pre></section><section><h2>POST http://127.0.0.1:5000/data</h2><p><strong>PASS | HTTP 400</strong> | application/json</p><pre>Request body: {&quot;name&quot;: &quot; &quot;, &quot;category&quot;: &quot;school&quot;}
+
+Response JSON:
+{
+  &quot;error&quot;: &quot;Bad Request&quot;,
+  &quot;message&quot;: &quot;&#x27;name&#x27; must be a non-empty string.&quot;
+}</pre></section><section><h2>POST http://127.0.0.1:5000/data</h2><p><strong>PASS | HTTP 400</strong> | application/json</p><pre>Request body: {&quot;name&quot;: &quot;Pencil&quot;, &quot;category&quot;: 7}
+
+Response JSON:
+{
+  &quot;error&quot;: &quot;Bad Request&quot;,
+  &quot;message&quot;: &quot;&#x27;category&#x27; must be a non-empty string.&quot;
+}</pre></section><section><h2>POST http://127.0.0.1:5000/data</h2><p><strong>PASS | HTTP 400</strong> | application/json</p><pre>Request body: []
+
+Response JSON:
+{
+  &quot;error&quot;: &quot;Bad Request&quot;,
+  &quot;message&quot;: &quot;The JSON body must be an object.&quot;
+}</pre></section><section><h2>POST http://127.0.0.1:5000/data</h2><p><strong>PASS | HTTP 400</strong> | application/json</p><pre>Request body: {
+
+Response JSON:
+{
+  &quot;error&quot;: &quot;Bad Request&quot;,
+  &quot;message&quot;: &quot;The browser (or proxy) sent a request that this server could not understand.&quot;
+}</pre></section><section><h2>POST http://127.0.0.1:5000/data</h2><p><strong>PASS | HTTP 415</strong> | application/json</p><pre>Request body: not JSON
+
+Response JSON:
+{
+  &quot;error&quot;: &quot;Unsupported Media Type&quot;,
+  &quot;message&quot;: &quot;Send JSON with Content-Type application/json.&quot;
+}</pre></section><section><h2>GET http://127.0.0.1:5000/missing</h2><p><strong>PASS | HTTP 404</strong> | application/json</p><pre>Request body: (no request body)
+
+Response JSON:
+{
+  &quot;error&quot;: &quot;Not Found&quot;,
+  &quot;message&quot;: &quot;The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.&quot;
+}</pre></section><section><h2>PUT http://127.0.0.1:5000/data</h2><p><strong>PASS | HTTP 405</strong> | application/json</p><pre>Request body: (no request body)
+
+Response JSON:
+{
+  &quot;error&quot;: &quot;Method Not Allowed&quot;,
+  &quot;message&quot;: &quot;The method is not allowed for the requested URL.&quot;
+}</pre></section><section><h2>GET http://127.0.0.1:5000/data</h2><p><strong>PASS | HTTP 200</strong> | application/json</p><pre>Request body: (no request body)
+
+Response JSON:
+{
+  &quot;count&quot;: 3,
+  &quot;items&quot;: [
+    {
+      &quot;category&quot;: &quot;school&quot;,
+      &quot;id&quot;: 1,
+      &quot;name&quot;: &quot;Notebook&quot;
+    },
+    {
+      &quot;category&quot;: &quot;everyday&quot;,
+      &quot;id&quot;: 2,
+      &quot;name&quot;: &quot;Water bottle&quot;
+    },
+    {
+      &quot;category&quot;: &quot;school&quot;,
+      &quot;id&quot;: 3,
+      &quot;name&quot;: &quot;Pencil&quot;
+    }
+  ]
+}</pre></section></html>

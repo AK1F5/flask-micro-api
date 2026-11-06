@@ -1,0 +1,205 @@
+{
+  "generated_at_utc": "2026-11-06T20:13:00.401264+00:00",
+  "client": "Python requests (real HTTP calls)",
+  "python_version": "3.12.10",
+  "flask_version": "3.1.3",
+  "requests_version": "2.34.2",
+  "result": "PASS",
+  "requests_passed": 13,
+  "checks": [
+    "Welcome message and structured sample data",
+    "Creation, trimming, server-assigned ID, and GET persistence",
+    "JSON errors for invalid input, media type, route, and method",
+    "Allow header preserved and rejected writes do not mutate data"
+  ],
+  "calls": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5000/hello",
+      "request_body": null,
+      "status": 200,
+      "content_type": "application/json",
+      "response": {
+        "message": "Welcome to the Flask Micro-API!"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": null,
+      "status": 200,
+      "content_type": "application/json",
+      "response": {
+        "count": 2,
+        "items": [
+          {
+            "category": "school",
+            "id": 1,
+            "name": "Notebook"
+          },
+          {
+            "category": "everyday",
+            "id": 2,
+            "name": "Water bottle"
+          }
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": "{\"id\": -99, \"name\": \"  Pencil  \", \"category\": \"school\"}",
+      "status": 201,
+      "content_type": "application/json",
+      "response": {
+        "item": {
+          "category": "school",
+          "id": 3,
+          "name": "Pencil"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": null,
+      "status": 200,
+      "content_type": "application/json",
+      "response": {
+        "count": 3,
+        "items": [
+          {
+            "category": "school",
+            "id": 1,
+            "name": "Notebook"
+          },
+          {
+            "category": "everyday",
+            "id": 2,
+            "name": "Water bottle"
+          },
+          {
+            "category": "school",
+            "id": 3,
+            "name": "Pencil"
+          }
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": "{\"name\": \"Missing category\"}",
+      "status": 400,
+      "content_type": "application/json",
+      "response": {
+        "error": "Bad Request",
+        "message": "'category' must be a non-empty string."
+      }
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": "{\"name\": \" \", \"category\": \"school\"}",
+      "status": 400,
+      "content_type": "application/json",
+      "response": {
+        "error": "Bad Request",
+        "message": "'name' must be a non-empty string."
+      }
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": "{\"name\": \"Pencil\", \"category\": 7}",
+      "status": 400,
+      "content_type": "application/json",
+      "response": {
+        "error": "Bad Request",
+        "message": "'category' must be a non-empty string."
+      }
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": "[]",
+      "status": 400,
+      "content_type": "application/json",
+      "response": {
+        "error": "Bad Request",
+        "message": "The JSON body must be an object."
+      }
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": "{",
+      "status": 400,
+      "content_type": "application/json",
+      "response": {
+        "error": "Bad Request",
+        "message": "The browser (or proxy) sent a request that this server could not understand."
+      }
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": "not JSON",
+      "status": 415,
+      "content_type": "application/json",
+      "response": {
+        "error": "Unsupported Media Type",
+        "message": "Send JSON with Content-Type application/json."
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5000/missing",
+      "request_body": null,
+      "status": 404,
+      "content_type": "application/json",
+      "response": {
+        "error": "Not Found",
+        "message": "The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again."
+      }
+    },
+    {
+      "method": "PUT",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": null,
+      "status": 405,
+      "content_type": "application/json",
+      "response": {
+        "error": "Method Not Allowed",
+        "message": "The method is not allowed for the requested URL."
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5000/data",
+      "request_body": null,
+      "status": 200,
+      "content_type": "application/json",
+      "response": {
+        "count": 3,
+        "items": [
+          {
+            "category": "school",
+            "id": 1,
+            "name": "Notebook"
+          },
+          {
+            "category": "everyday",
+            "id": 2,
+            "name": "Water bottle"
+          },
+          {
+            "category": "school",
+            "id": 3,
+            "name": "Pencil"
+          }
+        ]
+      }
+    }
+  ]
+}
